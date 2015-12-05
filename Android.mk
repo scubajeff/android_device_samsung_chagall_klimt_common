@@ -16,8 +16,6 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_DEVICE),chagalllte)
-
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
 include $(CLEAR_VARS)
@@ -51,4 +49,3 @@ $(shell mkdir -p $(TARGET_OUT_VENDOR_SHARED_LIBRARIES); \
 		$(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/libOpenCL.so.1.1;\
 	)
 
-endif

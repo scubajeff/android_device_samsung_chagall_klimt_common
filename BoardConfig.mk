@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/chagalllte
+LOCAL_PATH := device/samsung/chagall-klimt-common
 
 # Platform
 BOARD_VENDOR := samsung
@@ -50,7 +50,7 @@ BOARD_MODEM_TYPE := xmm7260
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUEDROID_VENDOR_CONF := $(LOCAL_PATH)/bluetooth/libbt_vndcfg.txt
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(TARGET_PATH)/bluetooth
 
 # Wifi
 BOARD_HAVE_SAMSUNG_WIFI          := true
@@ -108,6 +108,15 @@ TARGET_NO_RADIOIMAGE := true
 # FIMG2D
 BOARD_USES_SKIA_FIMGAPI := true
 BOARD_USES_NEON_BLITANTIH := true
+
+# Shader cache config options
+# Maximum size of the  GLES Shaders that can be cached for reuse.
+# Increase the size if shaders of size greater than 12KB are used.
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+# Maximum GLES shader cache size for each app to store the compiled shader
+# binaries. Decrease the size if RAM or Flash Storage size is a limitation
+# of the device.
+MAX_EGL_CACHE_SIZE := 2048*1024
 
 # Graphics
 USE_OPENGL_RENDERER := true
@@ -179,7 +188,7 @@ BOARD_USES_SCALER := true
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \
-	device/samsung/chagalllte/sepolicy
+	device/samsung/chagall-klimt-common/sepolicy
 
 # SurfaceFlinger - NOT USED !!!
 ##BOARD_USES_SYNC_MODE_FOR_MEDIA := true
@@ -192,9 +201,6 @@ ENABLE_WEBGL := true
 ##BOARD_USES_WFD_SERVICE := true
 # OK MERGED
 BOARD_USES_WFD := true
-
-# inherit from the proprietary version
--include vendor/samsung/chagalllte/BoardConfigVendor.mk
 
 # Enable Minikin text layout engine (will be the default soon)
 USE_MINIKIN := true

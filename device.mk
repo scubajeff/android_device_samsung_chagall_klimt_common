@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2015 Schischu
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,41 +14,35 @@
 # limitations under the License.
 #
 
-PRODUCT_COPY_FILES += \
-    device/samsung/chagalllte/google/bootanimation.zip:system/media/bootanimation.zip
-
 PRODUCT_PACKAGES += \
-    init.rc \
     init.samsung.rc \
     init.universal5420.rc \
     init.universal5420.usb.rc \
     init.universal5420.wifi.rc \
-    init.baseband.rc \
     fstab.universal5420 \
     ueventd.universal5420.rc
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
-    device/samsung/chagalllte/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl
+    device/samsung/chagall-klimt-common/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl
 
 PRODUCT_COPY_FILES += \
-    device/samsung/chagalllte/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    device/samsung/chagalllte/audio/mixer_paths.xml:system/etc/mixer_paths.xml
+    device/samsung/chagall-klimt-common/audio/audio_policy.conf:system/etc/audio_policy.conf \
+    device/samsung/chagall-klimt-common/audio/mixer_paths.xml:system/etc/mixer_paths.xml
 
 PRODUCT_COPY_FILES += \
-    device/samsung/chagalllte/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf
+    device/samsung/chagall-klimt-common/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf
 
 # Media profile
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
-    device/samsung/chagalllte/media/media_profiles.xml:system/etc/media_profiles.xml \
-    device/samsung/chagalllte/media/media_codecs.xml:system/etc/media_codecs.xml
+    device/samsung/chagall-klimt-common/media/media_profiles.xml:system/etc/media_profiles.xml \
+    device/samsung/chagall-klimt-common/media/media_codecs.xml:system/etc/media_codecs.xml
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.consumerir.xml:system/etc/permissions/android.hardware.consumerir.xml \
@@ -64,7 +58,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
-    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
@@ -80,12 +73,12 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 PRODUCT_CHARACTERISTICS := tablet
 
 DEVICE_PACKAGE_OVERLAYS := \
-    device/samsung/chagalllte/overlay
+    device/samsung/chagall-klimt-common/overlay
 
 PRODUCT_COPY_FILES += \
-    device/samsung/chagalllte/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    device/samsung/chagalllte/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    device/samsung/chagalllte/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
+    device/samsung/chagall-klimt-common/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+    device/samsung/chagall-klimt-common/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    device/samsung/chagall-klimt-common/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
 PRODUCT_PACKAGES += \
     libwpa_client \
@@ -178,10 +171,7 @@ PRODUCT_PACKAGES += \
 # Radio (needed for audio controls even on wifi-only)
 PRODUCT_PACKAGES += \
     libsecril-client \
-    libsecril-client-sap \
-    libril \
-    librilutils \
-    rild
+    libsecril-client-sap
 
 PRODUCT_PACKAGES += \
     strace
@@ -213,7 +203,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
 
-# setup dalvik vm configs.
-$(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
+$(call inherit-product, vendor/google/google-vendor.mk)
 
-$(call inherit-product, vendor/samsung/chagalllte/chagalllte-vendor.mk)
