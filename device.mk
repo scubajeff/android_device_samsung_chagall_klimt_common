@@ -24,11 +24,15 @@ PRODUCT_PACKAGES += \
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
-    device/samsung/chagall-klimt-common/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl
+    device/samsung/chagall-klimt-common/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl \
+    device/samsung/chagall-klimt-common/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
+
+# IDC
+PRODUCT_COPY_FILES += \
+    device/samsung/chagall-klimt-common/idc/Synaptics_HID_TouchPad.idc:system/usr/idc/Synaptics_HID_TouchPad.idc
 
 PRODUCT_COPY_FILES += \
-    device/samsung/chagall-klimt-common/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    device/samsung/chagall-klimt-common/audio/mixer_paths.xml:system/etc/mixer_paths.xml
+    device/samsung/chagall-klimt-common/audio/audio_policy.conf:system/etc/audio_policy.conf
 
 PRODUCT_COPY_FILES += \
     device/samsung/chagall-klimt-common/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf
@@ -73,7 +77,7 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 PRODUCT_CHARACTERISTICS := tablet
 
 DEVICE_PACKAGE_OVERLAYS := \
-    device/samsung/chagall-klimt-common/overlay
+    device/samsung/chagall-klimt-common/overlay-common
 
 PRODUCT_COPY_FILES += \
     device/samsung/chagall-klimt-common/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
@@ -201,7 +205,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # set default USB configuration
 # ORG
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
+    persist.sys.usb.config=mtp,adb
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.egl.force_msaa=1
 
 $(call inherit-product, vendor/google/google-vendor.mk)
 
