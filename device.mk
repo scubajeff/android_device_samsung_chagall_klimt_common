@@ -205,7 +205,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # set default USB configuration
 # ORG
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp,adb
+    persist.sys.usb.config=mtp
 
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.egl.force_msaa=1
