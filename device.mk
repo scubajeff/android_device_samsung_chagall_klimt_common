@@ -116,9 +116,6 @@ PRODUCT_PACKAGES += \
     libhwjpeg
 
 PRODUCT_PACKAGES += \
-    fingerprint.default
-
-PRODUCT_PACKAGES += \
     gps.universal5420
 
 PRODUCT_PACKAGES += \
@@ -132,6 +129,11 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     consumerir.universal5420
+
+PRODUCT_PACKAGES += \
+    fingerprintd \
+    fingerprint.universal5420 \
+    ValidityService
 
 #Needed for at least adb on userbuild
 PRODUCT_PACKAGES += \
