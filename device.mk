@@ -111,9 +111,11 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     libion_exynos \
-    libexynoscamera \
     camera.universal5420 \
     libhwjpeg
+
+#As long as we have no source for this, do not install
+#    libexynoscamera
 
 PRODUCT_PACKAGES += \
     gps.universal5420
@@ -210,7 +212,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    debug.egl.force_msaa=1
+    debug.egl.force_msaa=true
 
 $(call inherit-product, vendor/google/google-vendor.mk)
 

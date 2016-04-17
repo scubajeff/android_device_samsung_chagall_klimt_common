@@ -20,8 +20,9 @@ LOCAL_PATH := device/samsung/chagall-klimt-common
 BOARD_VENDOR := samsung
 TARGET_BOARD_PLATFORM := exynos5
 #TARGET_SLSI_VARIANT := 
-TARGET_SLSI_VARIANT := insignal
-#TARGET_SLSI_VARIANT := cm
+#The gralloc module from insignal is not compatible with camera in mm
+#TARGET_SLSI_VARIANT := insignal
+TARGET_SLSI_VARIANT := cm
 TARGET_SOC := exynos5420
 
 # Architecture
@@ -136,8 +137,8 @@ TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 ##TARGET_NR_SVC_SUPP_GIDS := 20
 
 # Media
-# NOT USED
-##COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED # use format from fw/native
+# Used if using slsi-cm
+COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED # use format from fw/native
 
 # NOT USED
 ##COMMON_GLOBAL_CFLAGS += -DWIDEVINE_PLUGIN_PRE_NOTIFY_ERROR
