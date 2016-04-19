@@ -155,9 +155,21 @@ PRODUCT_PACKAGES += \
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
-    e2fsck \
+    e2fsck
+
+# If using cm vold we support exfat and ntfs
+PRODUCT_PACKAGES += \
+    libfuse
+
+PRODUCT_PACKAGES += \
+    libexfat \
     fsck.exfat \
     mkfs.exfat
+
+PRODUCT_PACKAGES += \
+    libntfs-3g \
+    fsck.ntfs \
+    mkfs.ntfs
 
 # Charger
 PRODUCT_PACKAGES += \
