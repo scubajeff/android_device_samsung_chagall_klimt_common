@@ -21,8 +21,8 @@ BOARD_VENDOR := samsung
 TARGET_BOARD_PLATFORM := exynos5
 #TARGET_SLSI_VARIANT := 
 #The gralloc module from insignal is not compatible with camera in mm
-#TARGET_SLSI_VARIANT := insignal
-TARGET_SLSI_VARIANT := cm
+TARGET_SLSI_VARIANT := insignal
+#TARGET_SLSI_VARIANT := cm
 TARGET_SOC := exynos5420
 
 # Architecture
@@ -126,6 +126,12 @@ USE_OPENGL_RENDERER := true
 BOARD_EGL_CFG := $(LOCAL_PATH)/egl.cfg
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 5
 
+# Renderscript
+BOARD_OVERRIDE_RS_CPU_VARIANT_32 := cortex-a53
+
+# Exynos display
+BOARD_USES_VIRTUAL_DISPLAY := true
+
 # HWCServices
 BOARD_USES_HWC_SERVICES := true
 
@@ -137,8 +143,8 @@ TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 ##TARGET_NR_SVC_SUPP_GIDS := 20
 
 # Media
-# Used if using slsi-cm
-COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED # use format from fw/native
+# Used if using slsi-cm  # use format from fw/native
+COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED
 
 # NOT USED
 ##COMMON_GLOBAL_CFLAGS += -DWIDEVINE_PLUGIN_PRE_NOTIFY_ERROR
@@ -146,21 +152,24 @@ COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED # use format from fw/native
 # OpenMAX Video
 BOARD_USE_STOREMETADATA := true
 BOARD_USE_METADATABUFFERTYPE := true
-BOARD_USE_S3D_SUPPORT := true
 BOARD_USE_DMA_BUF := true
 BOARD_USE_ANB_OUTBUF_SHARE := true
-BOARD_USE_GSC_RGB_ENCODER := true
 BOARD_USE_IMPROVED_BUFFER := true
-BOARD_USE_CSC_HW := false
-BOARD_USE_H264_PREPEND_SPS_PPS := false
+BOARD_USE_NON_CACHED_GRAPHICBUFFER := true
+BOARD_USE_GSC_RGB_ENCODER := true
+BOARD_USE_CSC_HW := true
 BOARD_USE_QOS_CTRL := false
+BOARD_USE_S3D_SUPPORT := true
 BOARD_USE_VP8ENC_SUPPORT := true
-BOARD_USE_ENCODER_RGBINPUT_SUPPORT := true
-BOARD_USE_DUALDPB_MODE := true
 
 # Not yet compatible with art
 #WITH_DEXPREOPT := true
 #DONT_DEXPREOPT_PREBUILTS := true
+
+# If using cm vold we support exfat and ntfs
+TARGET_KERNEL_HAVE_EXFAT := true
+TARGET_KERNEL_HAVE_NTFS := true
+
 
 #default TARGET_USERIMAGES_USE_EXT4 := true
 #default BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := squashfs
@@ -193,6 +202,8 @@ RECOVERY_GRAPHICS_USE_LINELENGTH := true
 
 # Scaler - OK MERGED
 BOARD_USES_SCALER := true
+# Used by slsi-cm
+BOARD_USES_GSC_VIDEO := true
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \

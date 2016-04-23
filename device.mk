@@ -226,5 +226,8 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.egl.force_msaa=true
 
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    debug.sf.disable_hwc=1
+
 $(call inherit-product, vendor/google/google-vendor.mk)
 
