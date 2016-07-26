@@ -32,9 +32,6 @@ PRODUCT_COPY_FILES += \
     device/samsung/chagall-klimt-common/idc/Synaptics_HID_TouchPad.idc:system/usr/idc/Synaptics_HID_TouchPad.idc
 
 PRODUCT_COPY_FILES += \
-    device/samsung/chagall-klimt-common/audio/audio_policy.conf:system/etc/audio_policy.conf
-
-PRODUCT_COPY_FILES += \
     device/samsung/chagall-klimt-common/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf
 
 # Media profile
@@ -95,6 +92,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     LiveWallpapersPicker \
     librs_jni
+
+# Exchange
+PRODUCT_PACKAGES += \
+    Exchange
 
 PRODUCT_PACKAGES += \
     libstagefrighthw \
