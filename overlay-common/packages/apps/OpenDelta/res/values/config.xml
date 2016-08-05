@@ -4,7 +4,7 @@
     <!-- Output some debug strings -->
     <item type="bool" name="debug_output">true</item>
 
-    <string name="android_version">6.0</string>
+    <string name="android_version">7.0</string>
 
     <!-- Property to read for ROM version -->
     <string name="property_version">ro.build.version.incremental</string>
