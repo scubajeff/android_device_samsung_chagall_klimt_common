@@ -13,7 +13,7 @@
     <string name="property_device">ro.product.device</string>
 
     <!-- %s is expanded to property_version value. .zip, .delta, .update, .sign extensions added when needed -->
-    <string name="filename_base">aosp-</string>
+    <string name="filename_base">aosp-%s</string>
 
     <!-- Path deltas are stored, relative to sdcard root -->
     <string name="path_base">OpenDelta</string>
