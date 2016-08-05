@@ -32,7 +32,7 @@ PRODUCT_COPY_FILES += \
     device/samsung/chagall-klimt-common/idc/Synaptics_HID_TouchPad.idc:system/usr/idc/Synaptics_HID_TouchPad.idc
 
 PRODUCT_COPY_FILES += \
-    device/samsung/chagall-klimt-common/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf
+    device/samsung/chagall-klimt-common/audio/audio_effects.conf:system/etc/audio_effects.conf
 
 # Media profile
 PRODUCT_COPY_FILES += \
