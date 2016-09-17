@@ -1,0 +1,16 @@
+
+#avc: denied { write } for name="com.android.providers.telephony" dev="mmcblk0p21" ino=65480 scontext=u:r:radio:s0 tcontext=u:object_r:system_data_file:s0 tclass=dir permissive=1
+#avc: denied { add_name } for name="files" scontext=u:r:radio:s0 tcontext=u:object_r:system_data_file:s0 tclass=dir permissive=1
+#avc: denied { create } for name="files" scontext=u:r:radio:s0 tcontext=u:object_r:system_data_file:s0 tclass=dir permissive=1
+#avc: denied { setattr } for name="files" dev="mmcblk0p21" ino=65481 scontext=u:r:radio:s0 tcontext=u:object_r:system_data_file:s0 tclass=dir permissive=1
+allow radio system_data_file:dir { write add_name create setattr };
+
+#avc: denied { lock } for path="/data/user_de/0/com.android.providers.telephony/databases/mmssms.db" dev="mmcblk0p21" ino=65491 scontext=u:r:radio:s0 tcontext=u:object_r:system_data_file:s0 tclass=file permissive=1
+#avc: denied { create } for name="HbpcdLookup.db" scontext=u:r:radio:s0 tcontext=u:object_r:system_data_file:s0 tclass=file permissive=1
+#avc: denied { write } for name="HbpcdLookup.db" dev="mmcblk0p21" ino=65483 scontext=u:r:radio:s0 tcontext=u:object_r:system_data_file:s0 tclass=file permissive=1
+#avc: denied { setattr } for name="HbpcdLookup.db" dev="mmcblk0p21" ino=65483 scontext=u:r:radio:s0 tcontext=u:object_r:system_data_file:s0 tclass=file permissive=1
+#avc: denied { setattr } for name="mmssms.db" dev="mmcblk0p21" ino=65491 scontext=u:r:radio:s0 tcontext=u:object_r:system_data_file:s0 tclass=file permissive=1
+#avc: denied { getattr } for path="/data/user_de/0/com.android.settings" dev="mmcblk0p21" ino=65216 scontext=u:r:radio:s0 tcontext=u:object_r:system_app_data_file:s0 tclass=dir permissive=1
+allow radio system_data_file:file { lock create write setattr getattr };
+
+

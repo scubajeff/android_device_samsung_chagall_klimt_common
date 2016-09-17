@@ -19,3 +19,21 @@ allow vcs tee_device:chr_file rw_file_perms;
 
 #allow vcs firmware_file:dir r_dir_perms;
 #allow vcs firmware_file:file r_file_perms;
+
+#avc: denied { write } for name="log" dev="mmcblk0p21" ino=260106 scontext=u:r:vcs:s0 tcontext=u:object_r:system_data_file:s0 tclass=dir permissive=1
+#avc: denied { add_name } for name="validity" scontext=u:r:vcs:s0 tcontext=u:object_r:system_data_file:s0 tclass=dir permissive=1
+#avc: denied { create } for name="validity" scontext=u:r:vcs:s0 tcontext=u:object_r:system_data_file:s0 tclass=dir permissive=1
+allow vcs system_data_file:dir { write add_name create };
+
+#avc: denied { connectto } for path=006D636461656D6F6E scontext=u:r:vcs:s0 tcontext=u:r:tee:s0 tclass=unix_stream_socket permissive=1
+allow vcs tee:unix_stream_socket { connectto };
+
+#avc: denied { read write } for name="s5p-smem" dev="tmpfs" ino=780 scontext=u:r:vcs:s0 tcontext=u:object_r:secmem_device:s0 tclass=chr_file permissive=1
+#avc: denied { open } for name="s5p-smem" dev="tmpfs" ino=780 scontext=u:r:vcs:s0 tcontext=u:object_r:secmem_device:s0 tclass=chr_file permissive=1
+#avc: denied { ioctl } for path="/dev/s5p-smem" dev="tmpfs" ino=3218 ioctlcmd=5308 scontext=u:r:vcs:s0 tcontext=u:object_r:secmem_device:s0 tclass=chr_file permissive=1
+allow vcs secmem_device:chr_file { read write open ioctl };
+
+#avc: denied { read write } for name="ion" dev="tmpfs" ino=3107 scontext=u:r:vcs:s0 tcontext=u:object_r:ion_device:s0 tclass=chr_file permissive=1
+#avc: denied { open } for name="ion" dev="tmpfs" ino=3107 scontext=u:r:vcs:s0 tcontext=u:object_r:ion_device:s0 tclass=chr_file permissive=1
+#avc: denied { ioctl } for path="/dev/ion" dev="tmpfs" ino=3176 ioctlcmd=4900 scontext=u:r:vcs:s0 tcontext=u:object_r:ion_device:s0 tclass=chr_file permissive=1
+allow vcs ion_device:chr_file { read write open ioctl };

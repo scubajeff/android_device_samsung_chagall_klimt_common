@@ -1,0 +1,14 @@
+
+#avc: denied { write } for name="property_service" dev="tmpfs" ino=5544 scontext=u:r:cameraserver:s0 tcontext=u:object_r:property_socket:s0 tclass=sock_file permissive=1
+#avc: denied { write } for name="property_service" dev="tmpfs" ino=5544 scontext=u:r:cameraserver:s0 tcontext=u:object_r:property_socket:s0 tclass=sock_file permissive=1
+allow cameraserver property_socket:sock_file { write };
+
+#avc: denied { connectto } for path="/dev/socket/property_service" scontext=u:r:cameraserver:s0 tcontext=u:r:init:s0 tclass=unix_stream_socket permissive=1
+#avc: denied { connectto } for path="/dev/socket/property_service" scontext=u:r:cameraserver:s0 tcontext=u:r:init:s0 tclass=unix_stream_socket permissive=1
+allow cameraserver init:unix_stream_socket { connectto };
+
+#avc: denied { read } for name="rear_camtype" dev="sysfs" ino=14247 scontext=u:r:cameraserver:s0 tcontext=u:object_r:sysfs:s0 tclass=file permissive=1
+#avc: denied { open } for name="rear_camtype" dev="sysfs" ino=14247 scontext=u:r:cameraserver:s0 tcontext=u:object_r:sysfs:s0 tclass=file permissive=1
+#avc: denied { getattr } for path="/sys/devices/virtual/camera/rear/rear_camtype" dev="sysfs" ino=14247 scontext=u:r:cameraserver:s0 tcontext=u:object_r:sysfs:s0 tclass=file permissive=1
+allow cameraserver sysfs:file { read open getattr };
+

@@ -1,0 +1,10 @@
+
+#avc: denied { read } for name="omx" dev="mmcblk0p18" ino=1345 scontext=u:r:mediacodec:s0 tcontext=u:object_r:system_file:s0 tclass=dir permissive=1
+#avc: denied { open } for name="omx" dev="mmcblk0p18" ino=1345 scontext=u:r:mediacodec:s0 tcontext=u:object_r:system_file:s0 tclass=dir permissive=1
+allow mediacodec system_file:dir { read open };
+
+#avc: denied { read } for name="name" dev="sysfs" ino=13869 scontext=u:r:mediacodec:s0 tcontext=u:object_r:sysfs:s0 tclass=file permissive=1
+#avc: denied { open } for name="name" dev="sysfs" ino=13869 scontext=u:r:mediacodec:s0 tcontext=u:object_r:sysfs:s0 tclass=file permissive=1
+#avc: denied { getattr } for path="/sys/devices/platform/exynos-sysmmu.0/s5p-mfc-v6/video4linux/video6/name" dev="sysfs" ino=13869 scontext=u:r:mediacodec:s0 tcontext=u:object_r:sysfs:s0 tclass=file permissive=1
+allow mediacodec sysfs:file { read open getattr };
+

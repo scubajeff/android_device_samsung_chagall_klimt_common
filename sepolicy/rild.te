@@ -1,3 +1,4 @@
+
 allow rild { efs_file }:file rw_file_perms;
 allow rild self:netlink_socket { create bind read write };
 allow rild self:netlink_route_socket { write };
@@ -23,7 +24,10 @@ allow rild system_data_file:dir { write add_name remove_name };
 
 #W/rild    ( 2518): type=1400 audit(0.0:22): avc: denied { create } for name="mgzc" scontext=u:r:rild:s0 tcontext=u:object_r:system_data_file:s0 tclass=file
 #W/logcat  ( 3033): type=1400 audit(0.0:122): avc: denied { append } for name="radio_SIM_Removed.log" dev="mmcblk0p21" ino=260705 scontext=u:r:rild:s0 tcontext=u:object_r:system_data_file:s0 tclass=file
-#allow rild system_data_file:file { unlink create write append setattr };
+#avc: denied { create } for name="mgzc" scontext=u:r:rild:s0 tcontext=u:object_r:system_data_file:s0 tclass=file permissive=1
+#avc: denied { write } for name="mgzc" dev="mmcblk0p21" ino=56 scontext=u:r:rild:s0 tcontext=u:object_r:system_data_file:s0 tclass=file permissive=1
+#avc: denied { setattr } for name="mgzc" dev="mmcblk0p21" ino=56 scontext=u:r:rild:s0 tcontext=u:object_r:system_data_file:s0 tclass=file permissive=1
+allow rild system_data_file:file { unlink create write append setattr };
 
 #W/rild    ( 2582): type=1400 audit(0.0:163): avc: denied { search } for name="imei" dev="mmcblk0p3" ino=24 scontext=u:r:rild:s0 tcontext=u:object_r:unlabeled:s0 tclass=dir
 #W/rild    ( 2582): type=1400 audit(0.0:164): avc: denied { search } for name="FactoryApp" dev="mmcblk0p3" ino=25 scontext=u:r:rild:s0 tcontext=u:object_r:unlabeled:s0 tclass=dir
@@ -44,4 +48,5 @@ allow rild logdr_socket:sock_file { write };
 
 #W/logcat  ( 2867): type=1400 audit(0.0:120): avc: denied { connectto } for path="/dev/socket/logdr" scontext=u:r:rild:s0 tcontext=u:r:logd:s0 tclass=unix_stream_socket
 allow rild logd:unix_stream_socket { connectto read write };
+
 

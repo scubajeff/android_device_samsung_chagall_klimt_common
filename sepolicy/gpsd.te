@@ -2,3 +2,6 @@
 # and contained files
 file_type_auto_trans(gpsd, system_data_file, gps_data_file);
 allow gpsd sysfs_wake_lock:file rw_file_perms;
+
+#avc: denied { create } for scontext=u:r:gpsd:s0 tcontext=u:r:gpsd:s0 tclass=netlink_kobject_uevent_socket permissive=1
+allow gpsd gpsd:netlink_kobject_uevent_socket { create setopt bind };

@@ -1,0 +1,3 @@
+
+#avc: denied { getattr } for path="/data/media/0/open_gapps_log.txt" dev="mmcblk0p21" ino=195904 scontext=u:r:sdcardd:s0 tcontext=u:object_r:unlabeled:s0 tclass=file permissive=1
+allow sdcardd unlabeled:file { getattr };

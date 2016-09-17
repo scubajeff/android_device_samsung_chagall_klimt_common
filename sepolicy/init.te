@@ -5,3 +5,6 @@ allow init tmpfs:lnk_file { create };
 
 #avc: denied { write } for name="property_service" dev="tmpfs" ino=6231 scontext=u:r:init:s0 tcontext=u:object_r:property_socket:s0 tclass=sock_file permissive=1
 allow init property_socket:sock_file { write };
+
+#avc: denied { getattr } for path="/proc/2385" dev="proc" ino=4226 scontext=u:r:init:s0 tcontext=u:r:logd:s0 tclass=dir permissive=1
+allow init logd:dir { getattr };

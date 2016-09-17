@@ -1,0 +1,23 @@
+#avc: denied { write } for name="com.android.providers.media" dev="mmcblk0p21" ino=65405 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:system_data_file:s0 tclass=dir permissive=1
+#avc: denied { add_name } for name="databases" scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:system_data_file:s0 tclass=dir permissive=1
+#avc: denied { create } for name="databases" scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:system_data_file:s0:c512,c768 tclass=dir permissive=1
+#avc: denied { setattr } for name="databases" dev="mmcblk0p21" ino=65415 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:system_data_file:s0:c512,c768 tclass=dir permissive=1
+#avc: denied { write } for name="databases" dev="mmcblk0p21" ino=65415 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:system_data_file:s0:c512,c768 tclass=dir permissive=1
+#avc: denied { add_name } for name="external.db" scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:system_data_file:s0:c512,c768 tclass=dir permissive=1
+allow priv_app system_data_file:dir { write add_name create setattr };
+
+#avc: denied { create } for name="external.db" scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:system_data_file:s0:c512,c768 tclass=file permissive=1
+#avc: denied { write } for name="external.db" dev="mmcblk0p21" ino=65418 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:system_data_file:s0:c512,c768 tclass=file permissive=1
+#avc: denied { lock } for path="/data/data/com.android.providers.media/databases/external.db" dev="mmcblk0p21" ino=65418 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:system_data_file:s0:c512,c768 tclass=file permissive=1
+#avc: denied { setattr } for name="external.db" dev="mmcblk0p21" ino=65418 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:system_data_file:s0:c512,c768 tclass=file permissive=1
+#avc: denied { lock } for path="/data/data/com.android.providers.calendar/databases/calendar.db" dev="mmcblk0p21" ino=65557 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:system_data_file:s0:c512,c768 tclass=file permissive=1
+#avc: denied { write } for name="internal.db" dev="mmcblk0p21" ino=65519 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:system_data_file:s0:c512,c768 tclass=file permissive=1
+#avc: denied { setattr } for name="internal.db" dev="mmcblk0p21" ino=65519 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:system_data_file:s0:c512,c768 tclass=file permissive=1
+allow priv_app system_data_file:file { write create lock setattr };
+
+#avc: denied { read } for name="/" dev="tmpfs" ino=3518 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=1
+#avc: denied { open } for name="/" dev="tmpfs" ino=3518 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=dir permissive=1
+allow priv_app device:dir { read open };
+
+#avc: denied { ioctl } for path="socket:[29690]" dev="sockfs" ino=29690 ioctlcmd=8b1b scontext=u:r:priv_app:s0:c512,c768 tcontext=u:r:priv_app:s0:c512,c768 tclass=udp_socket permissive=1
+allow priv_app priv_app:udp_socket { ioctl };

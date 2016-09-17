@@ -1,0 +1,3 @@
+
+#avc: denied { ioctl } for path="socket:[45062]" dev="sockfs" ino=45062 ioctlcmd=8b1b scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:r:untrusted_app:s0:c512,c768 tclass=udp_socket permissive=1
+allow untrusted_app untrusted_app:udp_socket { getattr };
