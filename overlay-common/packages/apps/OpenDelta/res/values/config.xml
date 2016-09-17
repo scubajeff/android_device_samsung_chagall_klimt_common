@@ -4,7 +4,7 @@
     <!-- Output some debug strings -->
     <item type="bool" name="debug_output">true</item>
 
-    <string name="android_version">6.0</string>
+    <string name="android_version">7.0</string>
 
     <!-- Property to read for ROM version -->
     <string name="property_version">ro.build.version.incremental</string>
@@ -31,7 +31,7 @@
     <string name="url_base_full">https://duckbox.de/android/%1$s/aosp-%2$s/</string>
 
     <!-- URL base to fetch all builds -->
-    <string name="url_base_json">https://duckbox.de/android/json.php"</string>
+    <string name="url_base_json">https://duckbox.de/android/json.php/%2$s"</string>
 
     <!-- Applies whole-file signature delta. Adds one extra delta step. Required if recovery verifies signatures -->
     <item type="bool" name="apply_signature">false</item>
