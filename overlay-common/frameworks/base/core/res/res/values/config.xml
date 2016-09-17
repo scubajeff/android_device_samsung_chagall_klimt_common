@@ -19,13 +19,6 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- If this is true, the screen will fade off. -->
-    <bool name="config_animateScreenLights">false</bool>
-
-    <!-- Whether a software navigation bar should be shown. NOTE: in the future this may be
-         autodetected from the Configuration. -->
-    <bool name="config_showNavigationBar">false</bool>
-
     <!-- Flag indicating whether the we should enable the automatic brightness in Settings.
          Software implementation will be used if config_hardware_auto_brightness_available is not set -->
     <bool name="config_automatic_brightness_available">true</bool>
@@ -74,9 +67,6 @@
     <!-- Minimum screen brightness allowed by the power manager. -->
     <integer name="config_screenBrightnessDim">20</integer>
 
-    <!-- Screen brightness when dozing. -->
-    <integer name="config_screenBrightnessDoze">1</integer>
-
     <!-- Default screen brightness setting.
          Must be in the range specified by minimum and maximum. -->
     <integer name="config_screenBrightnessSettingDefault">135</integer>
@@ -88,6 +78,9 @@
     <!-- If this is true, the screen will come on when you unplug usb/power/whatever. -->
     <bool name="config_unplugTurnsOnScreen">true</bool>
 
+    <!-- Indicate whether the SD card is accessible without removing the battery. -->
+    <bool name="config_batterySdCardAccessibility">true</bool>
+
     <!-- Control the behavior when the user long presses the home button.
             0 - Nothing
             1 - Recent apps view in SystemUI
@@ -97,18 +90,27 @@
     -->
     <integer name="config_longPressOnHomeBehavior">2</integer>
 
+    <!-- Defines the default set of global actions. Actions may still be disabled or hidden based
+         on the current state of the device.
+         Each item must be one of the following strings:
+         "power" = Power off
+         "settings" = An action to launch settings
+         "airplane" = Airplane mode toggle
+         "bugreport" = Take bug report, if available
+         "silent" = silent mode
+         "users" = list of users
+         -->
+    <string-array translatable="false" name="config_globalActionsList">
+        <item>power</item>
+        <item>reboot</item>
+        <item>recovery</item>
+        <item>bugreport</item>
+        <item>users</item>
+    </string-array>
+
     <!-- Boolean indicating if restoring network selection should be skipped -->
     <!-- The restoring is handled by modem if it is true -->
     <bool translatable="false" name="skip_restoring_network_selection">true</bool>
-
-    <!-- Default color for notification LED is white. -->
-    <color name="config_defaultNotificationColor">#ffffffff</color>
-
-    <!-- Default LED on time for notification LED in milliseconds. -->
-    <integer name="config_defaultNotificationLedOn">500</integer>
-
-    <!-- Default LED off time for notification LED in milliseconds. -->
-    <integer name="config_defaultNotificationLedOff">2000</integer>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
          USB interfaces.  If the device doesn't want to support tething over USB this should
@@ -144,10 +146,6 @@
         <item>7</item>
         <item>9</item>
     </integer-array>
-
-    <!-- The duration (in milliseconds) that the radio will scan for a signal
-         when there's no network connection. If the scan doesn't timeout, use zero -->
-    <integer name="config_radioScanningTimeout">0</integer>
 
     <!-- This string array should be overridden by the device to present a list of radio
          attributes.  This is used by the connectivity manager to decide which networks can coexist
@@ -210,23 +208,12 @@
     <!-- Is false on Samsung STOCK ROM -->
     <bool name="config_lidControlsSleep">true</bool>
 
-    <!-- Indicate whether to allow the device to suspend when the screen is off
-         due to the proximity sensor.  This resource should only be set to true
-         if the sensor HAL correctly handles the proximity sensor as a wake-up source.
-         Otherwise, the device may fail to wake out of suspend reliably.
-         The default is false. -->
-    <!-- Is false on Samsung STOCK ROM -->
-    <bool name="config_suspendWhenScreenOffDueToProximity">false</bool>
-
     <!-- Vibrator pattern for feedback about a long screen/key press -->
     <integer-array name="config_longPressVibePattern">
         <item>0</item>
         <item>7</item>
         <item>10</item>
     </integer-array>
-
-    <!-- Make things go fast -->
-    <bool name="config_ui_enableFadingMarquee">false</bool>
 
     <!-- Vibrator pattern for feedback about touching a virtual key -->
     <integer-array name="config_virtualKeyVibePattern">
@@ -248,26 +235,6 @@
     <!-- Dream of notifications -->
     <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
     <bool name="config_dozeAfterScreenOff">true</bool>
-
-    <!-- Power Management: Specifies whether to decouple the interactive state of the
-         device from the display on/off state.
-
-         When false, setInteractive(..., true) will be called before the display is turned on
-         and setInteractive(..., false) will be called after the display is turned off.
-         This mode provides best compatibility for devices that expect the interactive
-         state to be tied to the display state.
-
-         When true, setInteractive(...) will be called independently of whether the display
-         is being turned on or off.  This mode enables the power manager to reduce
-         clocks and disable the touch controller while the display is on.
-
-         This resource should be set to "true" when a doze component has been specified
-         to maximize power savings but not all devices support it.
-
-         Refer to power.h for details.
-    -->
-    <!-- Is false on Samsung STOCK ROM -->
-    <bool name="config_powerDecoupleInteractiveModeFromDisplay">false</bool>
 
     <!-- User activity timeout: Minimum screen off timeout in milliseconds.
 
@@ -324,4 +291,12 @@
 
     <!-- Whether device supports double tap to wake -->
     <bool name="config_supportDoubleTapWake">true</bool>
+
+    <!-- The device supports freeform window management. Windows have title bars and can be moved
+         and resized. If you set this to true, you also need to add
+         PackageManager.FEATURE_FREEFORM_WINDOW_MANAGEMENT feature to your device specification.
+         The duplication is necessary, because this information is used before the features are
+         available to the system.-->
+    <bool name="config_freeformWindowManagement">true</bool>
+
 </resources>
