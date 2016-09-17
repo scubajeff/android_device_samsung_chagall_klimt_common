@@ -50,7 +50,7 @@ BOARD_MODEM_TYPE := xmm7260
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUEDROID_VENDOR_CONF := $(LOCAL_PATH)/bluetooth/libbt_vndcfg.txt
+BOARD_CUSTOM_BT_CONFIG:= $(LOCAL_PATH)/bluetooth/libbt_vndcfg.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(TARGET_PATH)/bluetooth
 
 # Wifi
@@ -208,6 +208,10 @@ BOARD_USES_GSC_VIDEO := true
 # SELinux
 BOARD_SEPOLICY_DIRS += \
 	device/samsung/chagall-klimt-common/sepolicy
+
+# Seccomp filters
+BOARD_SECCOMP_POLICY += \
+	device/samsung/chagall-klimt-common/seccomp
 
 # SurfaceFlinger - NOT USED !!!
 ##BOARD_USES_SYNC_MODE_FOR_MEDIA := true
