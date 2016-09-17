@@ -26,7 +26,8 @@ LOCAL_SHARED_LIBRARIES:= libutils libcutils libbinder liblog libcamera_client li
 LOCAL_CFLAGS += -DGAIA_FW_BETA
 
 LOCAL_C_INCLUDES += \
-    system/media/camera/include
+    system/media/camera/include \
+    framworks/av/include/camera
 
 LOCAL_SRC_FILES:= \
 	ExynosCameraHWImpl.cpp
@@ -46,7 +47,8 @@ include $(CLEAR_VARS)
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
 
 LOCAL_C_INCLUDES += \
-    system/media/camera/include
+    system/media/camera/include \
+    framworks/av/include/camera
 
 LOCAL_SRC_FILES := \
     ExynosCameraHWInterface.cpp
