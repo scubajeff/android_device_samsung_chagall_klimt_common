@@ -77,16 +77,16 @@ WIFI_DRIVER_NVRAM_PATH           := "/system/etc/wifi/nvram_net.txt"
 # frameworks/native/include/binder/IMemory.h
 # frameworks/native/libs/binder/IMemory.cpp
 # OK MERGED
+BOARD_CAMERA_SNUMINTS := 34
 BOARD_NEEDS_MEMORYHEAPION := true
+COMMON_GLOBAL_CFLAGS += -DCAMERA_SNUMINTS=$(BOARD_CAMERA_SNUMINTS)
+COMMON_GLOBAL_CFLAGS += -DSAMSUNG_DVFS
 
 # NOT USED
 ##COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
 
 # NOT USED
 ##COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
-
-# NOT USED
-##COMMON_GLOBAL_CFLAGS += -DSAMSUNG_DVFS
 
 # Force the screenshot path to CPU consumer
 # frameworks/native/libs/gui/SurfaceComposerClient.cpp
