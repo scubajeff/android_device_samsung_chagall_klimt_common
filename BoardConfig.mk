@@ -50,6 +50,7 @@ BOARD_MODEM_TYPE := xmm7260
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
+BOARD_HAVE_SAMSUNG_BLUETOOTH := true
 BOARD_CUSTOM_BT_CONFIG:= $(LOCAL_PATH)/bluetooth/libbt_vndcfg.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(TARGET_PATH)/bluetooth
 
@@ -104,9 +105,10 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 BOARD_BATTERY_DEVICE_NAME := battery
+BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
 
 # Bootloader
-TARGET_OTA_ASSERT_DEVICE := chagalllte
+#TARGET_OTA_ASSERT_DEVICE := chagalllte
 TARGET_BOOTLOADER_BOARD_NAME := universal5420
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
@@ -128,6 +130,8 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 USE_OPENGL_RENDERER := true
 BOARD_EGL_CFG := $(LOCAL_PATH)/egl.cfg
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 5
+TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
+TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
 
 # Renderscript
 BOARD_OVERRIDE_RS_CPU_VARIANT_32 := cortex-a53
@@ -165,8 +169,10 @@ BOARD_USE_QOS_CTRL := false
 BOARD_USE_S3D_SUPPORT := true
 BOARD_USE_VP8ENC_SUPPORT := true
 
+# Enable dex-preoptimization to speed up first boot sequence
+WITH_DEXPREOPT := true
+
 # Not yet compatible with art
-#WITH_DEXPREOPT := true
 #DONT_DEXPREOPT_PREBUILTS := true
 
 # If using cm vold we support exfat and ntfs
@@ -203,6 +209,9 @@ TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_RECOVERY_SWIPE := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 
+# Samsung Gralloc
+TARGET_SAMSUNG_GRALLOC_EXTERNAL_USECASES := true
+
 # Scaler - OK MERGED
 BOARD_USES_SCALER := true
 # Used by slsi-cm
@@ -234,3 +243,5 @@ USE_MINIKIN := true
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
 
+# Disable journaling on system.img to save space
+BOARD_SYSTEMIMAGE_JOURNAL_SIZE := 0
