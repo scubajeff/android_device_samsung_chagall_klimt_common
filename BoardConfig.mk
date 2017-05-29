@@ -21,8 +21,8 @@ BOARD_VENDOR := samsung
 TARGET_BOARD_PLATFORM := exynos5
 #TARGET_SLSI_VARIANT := 
 #The gralloc module from insignal is not compatible with camera in mm
-TARGET_SLSI_VARIANT := insignal
-#TARGET_SLSI_VARIANT := cm
+#TARGET_SLSI_VARIANT := insignal
+TARGET_SLSI_VARIANT := cm
 TARGET_SOC := exynos5420
 
 # Architecture
