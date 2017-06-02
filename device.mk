@@ -14,6 +14,9 @@
 # limitations under the License.
 #
 
+LOCAL_PATH := device/samsung/chagall-klimt-common
+
+# Ramdisk
 PRODUCT_PACKAGES += \
     init.samsung.rc \
     init.universal5420.rc \
@@ -24,23 +27,23 @@ PRODUCT_PACKAGES += \
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
-    device/samsung/chagall-klimt-common/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl \
-    device/samsung/chagall-klimt-common/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
+    $(LOCAL_PATH)/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl \
+    $(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
 
 # IDC
 PRODUCT_COPY_FILES += \
-    device/samsung/chagall-klimt-common/idc/Synaptics_HID_TouchPad.idc:system/usr/idc/Synaptics_HID_TouchPad.idc
+    $(LOCAL_PATH)/idc/Synaptics_HID_TouchPad.idc:system/usr/idc/Synaptics_HID_TouchPad.idc
 
 PRODUCT_COPY_FILES += \
-    device/samsung/chagall-klimt-common/audio/audio_effects.conf:system/etc/audio_effects.conf
+    $(LOCAL_PATH)/audio/audio_effects.conf:system/etc/audio_effects.conf
 
 # Media profile
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
-    device/samsung/chagall-klimt-common/media/media_profiles.xml:system/etc/media_profiles.xml \
-    device/samsung/chagall-klimt-common/media/media_codecs.xml:system/etc/media_codecs.xml
+    $(LOCAL_PATH)/media/media_profiles.xml:system/etc/media_profiles.xml \
+    $(LOCAL_PATH)/media/media_codecs.xml:system/etc/media_codecs.xml
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -55,19 +58,17 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
+	frameworks/native/data/etc/android.hardware.sensor.barometer.xml:system/etc/permissions/android.hardware.sensor.barometer.xml \
+    frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:system/etc/permissions/android.hardware.sensor.stepdetector.xml \
+    frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:system/etc/permissions/android.hardware.sensor.stepcounter.xml \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
-    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
-    \
-    frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
     frameworks/native/data/etc/android.software.webview.xml:system/etc/permissions/android.software.webview.xml \
-    \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml \
-    \
     frameworks/native/data/etc/android.software.app_widgets.xml:system/etc/permissions/android.software.app_widgets.xml \
     frameworks/native/data/etc/android.software.freeform_window_management.xml:system/etc/permissions/android.software.freeform_window_management.xml
 
@@ -77,12 +78,12 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 PRODUCT_CHARACTERISTICS := tablet
 
 DEVICE_PACKAGE_OVERLAYS := \
-    device/samsung/chagall-klimt-common/overlay-common
+    $(LOCAL_PATH)/overlay-common
 
 PRODUCT_COPY_FILES += \
-    device/samsung/chagall-klimt-common/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    device/samsung/chagall-klimt-common/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    device/samsung/chagall-klimt-common/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
+    $(LOCAL_PATH)/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+    $(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
 PRODUCT_PACKAGES += \
     libwpa_client \
@@ -100,12 +101,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Exchange
 
+# OMX
 PRODUCT_PACKAGES += \
-    libstagefrighthw \
-    libcsc \
-    libExynosOMX_Core \
-    libOMX.Exynos.MP3.Decoder
+    libcsc
 
+# Audio
 PRODUCT_PACKAGES += \
     audio.primary.universal5420 \
     audio.a2dp.default \
@@ -113,6 +113,7 @@ PRODUCT_PACKAGES += \
     audio.r_submix.default \
     tinymix
 
+# Camera
 PRODUCT_PACKAGES += \
     libion_exynos \
     camera.universal5420 \
@@ -124,12 +125,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     gps.universal5420
 
+# HW composer
 PRODUCT_PACKAGES += \
     libion \
-    hwcomposer.exynos5 \
     gralloc.exynos5 \
-    memtrack.exynos5
 
+# Stlport
 PRODUCT_PACKAGES += \
     libstlport
 
@@ -145,6 +146,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     keystore.exynos5
 
+# Power
 PRODUCT_PACKAGES += \
     power.universal5420
 
@@ -184,8 +186,7 @@ PRODUCT_PACKAGES += \
     libMcClient \
     libMcRegistry \
     libPaApi \
-    libgdmcprov \
-    mcDriverDaemon
+    libgdmcprov
 
 # Network tools
 PRODUCT_PACKAGES += \
@@ -216,11 +217,29 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=320
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.carrier=unknown 
+    ro.carrier=unknown
 
-# CPU producer to CPU consumer not supported 
+# CPU producer to CPU consumer not supported
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.bq.gpu_to_cpu_unsupported=1
+
+# Dex2oat optimizations
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.sys.fw.dex2oat_thread_count=4
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dex2oat-filter=speed \
+    dalvik.vm.dex2oat-swap=false
+
+# Enable multi-window by default
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.debug.multi_window=true
+
+# Legacy stagefright media
+PRODUCT_PROPERTY_OVERRIDES += \
+    media.stagefright.legacyencoder=true \
+    media.stagefright.less-secure=true
+
 
 # set default USB configuration
 # ORG
@@ -233,5 +252,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #PRODUCT_PROPERTY_OVERRIDES += \
 #    debug.sf.disable_hwc=1
 
-$(call inherit-product, vendor/google/google-vendor.mk)
+# Call Samsung LSI board support package
+$(call inherit-product, hardware/samsung_slsi-cm/exynos5/exynos5.mk)
+$(call inherit-product, hardware/samsung_slsi-cm/exynos5420/exynos5420.mk)
 
+# Google boot animation
+$(call inherit-product, vendor/google/google-vendor.mk)
