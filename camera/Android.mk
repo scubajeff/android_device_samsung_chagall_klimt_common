@@ -30,7 +30,7 @@ LOCAL_C_INCLUDES += \
     framworks/av/include/camera
 
 LOCAL_SRC_FILES:= \
-	ExynosCameraHWImpl.cpp
+    ExynosCameraHWImpl.cpp
 
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE := libexynoscamera
