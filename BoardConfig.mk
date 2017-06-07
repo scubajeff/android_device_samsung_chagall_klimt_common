@@ -262,3 +262,6 @@ EXTENDED_FONT_FOOTPRINT := true
 
 # Disable journaling on system.img to save space
 BOARD_SYSTEMIMAGE_JOURNAL_SIZE := 0
+
+# Linker
+LINKER_FORCED_SHIM_LIBS := /system/vendor/lib/egl/libGLES_mali.so|libpopcountsi2.so

@@ -252,6 +252,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #PRODUCT_PROPERTY_OVERRIDES += \
 #    debug.sf.disable_hwc=1
 
+# __popcountsi2 method, for the r7p0 egl blob
+PRODUCT_PACKAGES += \
+    libpopcountsi2
+
 # Call Samsung LSI board support package
 $(call inherit-product, hardware/samsung_slsi-cm/exynos5/exynos5.mk)
 $(call inherit-product, hardware/samsung_slsi-cm/exynos5420/exynos5420.mk)
