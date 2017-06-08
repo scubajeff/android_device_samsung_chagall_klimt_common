@@ -119,9 +119,9 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    libion_exynos \
     camera.universal5420 \
     libhwjpeg
+#    libion_exynos \
 
 #As long as we have no source for this, do not install
 #    libexynoscamera
@@ -250,7 +250,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
 
-PRODUCT_PROPERTY_OVERRIDES += \
+#PRODUCT_PROPERTY_OVERRIDES += \
     debug.egl.force_msaa=true
 
 #PRODUCT_PROPERTY_OVERRIDES += \
