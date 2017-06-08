@@ -215,7 +215,8 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     libnetcmdiface \
-    macloader
+	wifiloader
+#    macloader
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=320
