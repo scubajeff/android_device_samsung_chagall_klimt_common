@@ -126,7 +126,7 @@ PRODUCT_PACKAGES += \
 #As long as we have no source for this, do not install
 #    libexynoscamera
 
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     gps.universal5420
 
 # HW composer
