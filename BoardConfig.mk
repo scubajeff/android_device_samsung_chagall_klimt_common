@@ -77,7 +77,7 @@ TARGET_KERNEL_CONFIG := cyanogenmod_chagalllte_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/chagalllte
 
 # Charging mode
-BOARD_CHARGER_ENABLE_SUSPEND := true
+#BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 BOARD_BATTERY_DEVICE_NAME := battery
@@ -147,11 +147,6 @@ BOARD_USE_VP8ENC_SUPPORT := true
 # Enable dex-preoptimization to speed up first boot sequence
 WITH_DEXPREOPT := true
 WITH_DEXPREOPT_BOOT_IMG_ONLY := true
-
-# If using cm vold we support exfat and ntfs
-TARGET_KERNEL_HAVE_EXFAT := true
-TARGET_KERNEL_HAVE_NTFS := true
-
 
 #default TARGET_USERIMAGES_USE_EXT4 := true
 #default BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := squashfs

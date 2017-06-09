@@ -164,9 +164,11 @@ PRODUCT_PACKAGES += \
     libexfat \
     fsck.exfat \
     mkfs.exfat \
+	mount.exfat \
     libntfs-3g \
     fsck.ntfs \
-    mkfs.ntfs
+    mkfs.ntfs \
+	mount.ntfs
 
 # Charger
 PRODUCT_PACKAGES += \
