@@ -34,6 +34,15 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/idc/Synaptics_HID_TouchPad.idc:system/usr/idc/Synaptics_HID_TouchPad.idc
 
+# Audio
+PRODUCT_PACKAGES += \
+    audio.primary.universal5420 \
+    audio.a2dp.default \
+    audio.usb.default \
+    audio.r_submix.default \
+    tinymix
+
+# Audio
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_effects.conf:system/etc/audio_effects.conf
 
@@ -47,7 +56,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/media/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
     $(LOCAL_PATH)/media/media_profiles.xml:system/etc/media_profiles.xml
 
-# These are the hardware-specific features
+# Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
@@ -82,6 +91,7 @@ PRODUCT_CHARACTERISTICS := tablet
 DEVICE_PACKAGE_OVERLAYS := \
     $(LOCAL_PATH)/overlay-common
 
+# Wifi
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     $(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
@@ -109,25 +119,12 @@ PRODUCT_PACKAGES += \
     libOMX.Exynos.WMV.Decoder \
     libOMX.Exynos.MPEG2.Decoder
 
-# Audio
-PRODUCT_PACKAGES += \
-    audio.primary.universal5420 \
-    audio.a2dp.default \
-    audio.usb.default \
-    audio.r_submix.default \
-    tinymix
-
 # Camera
 PRODUCT_PACKAGES += \
     camera.universal5420 \
     libhwjpeg
-#    libion_exynos \
-
 #As long as we have no source for this, do not install
 #    libexynoscamera
-
-#PRODUCT_PACKAGES += \
-    gps.universal5420
 
 # HW composer
 PRODUCT_PACKAGES += \
@@ -157,26 +154,16 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     lights.universal5420
 
-PRODUCT_PACKAGES += \
-    hwtest
-
-PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory
-
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     e2fsck
 
 # If using cm vold we support exfat and ntfs
 PRODUCT_PACKAGES += \
-    libfuse
-
-PRODUCT_PACKAGES += \
+    libfuse \
     libexfat \
     fsck.exfat \
-    mkfs.exfat
-
-PRODUCT_PACKAGES += \
+    mkfs.exfat \
     libntfs-3g \
     fsck.ntfs \
     mkfs.ntfs
@@ -201,9 +188,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libsecril-client \
     libsecril-client-sap
-
-PRODUCT_PACKAGES += \
-    strace
 
 # Recovery
 PRODUCT_PACKAGES += \
@@ -250,12 +234,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # ORG
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
-
-#PRODUCT_PROPERTY_OVERRIDES += \
-    debug.egl.force_msaa=true
-
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    debug.sf.disable_hwc=1
 
 # __popcountsi2 method, for the r7p0 egl blob
 PRODUCT_PACKAGES += \

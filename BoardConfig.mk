@@ -19,7 +19,6 @@ LOCAL_PATH := device/samsung/chagall-klimt-common
 # Platform
 BOARD_VENDOR := samsung
 TARGET_BOARD_PLATFORM := exynos5
-#TARGET_SLSI_VARIANT :=
 #The gralloc module from insignal is not compatible with camera in mm
 #TARGET_SLSI_VARIANT := insignal
 TARGET_SLSI_VARIANT := cm
@@ -33,15 +32,6 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
 
-# Vold
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
-
-# Audio
-BOARD_USES_LIBMEDIA_WITH_AUDIOPARAMETER := true
-
-# Bionic
-TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
-
 # RIL
 BOARD_PROVIDES_LIBRIL := true
 # hardware/samsung/ril
@@ -53,9 +43,6 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_HAVE_SAMSUNG_BLUETOOTH := true
 BOARD_CUSTOM_BT_CONFIG:= $(LOCAL_PATH)/bluetooth/libbt_vndcfg.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(TARGET_PATH)/bluetooth
-
-# Light
-TARGET_PROVIDES_LIBLIGHT := true
 
 # Wifi
 BOARD_HAVE_SAMSUNG_WIFI          := true
@@ -70,12 +57,6 @@ WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcmdhd_apsta.bin"
 WIFI_DRIVER_FW_PATH_STA          := "/system/etc/wifi/bcmdhd_sta.bin"
 
 # Camera
-# frameworks/av/services/camera/libcameraservice/Android.mk
-# frameworks/av/services/camera/libcameraservice/device1/CameraHardwareInterface.h
-# frameworks/native/libs/binder/Android.mk
-# frameworks/native/include/binder/IMemory.h
-# frameworks/native/libs/binder/IMemory.cpp
-# OK MERGED
 BOARD_NEEDS_MEMORYHEAPION := true
 BOARD_CAMERA_SNUMINTS := 34
 BOARD_GLOBAL_CFLAGS += -DCAMERA_SNUMINTS=$(BOARD_CAMERA_SNUMINTS)
@@ -85,15 +66,8 @@ TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 # Force the screenshot path to CPU consumer
 TARGET_FORCE_SCREENSHOT_CPU_PATH := true
 
-# NOT USED
-##BOARD_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
-
-# NOT USED
-##BOARD_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
-
 # Force the screenshot path to CPU consumer
 # frameworks/native/libs/gui/SurfaceComposerClient.cpp
-# OK MERGED
 BOARD_GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH
 
 # Kernel
@@ -110,14 +84,12 @@ BOARD_BATTERY_DEVICE_NAME := battery
 BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
 
 # Bootloader
-#TARGET_OTA_ASSERT_DEVICE := chagalllte
 TARGET_BOOTLOADER_BOARD_NAME := universal5420
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # FIMG2D
 BOARD_USES_SKIA_FIMGAPI := true
-BOARD_USES_NEON_BLITANTIH := true
 
 # Shader cache config options
 # Maximum size of the  GLES Shaders that can be cached for reuse.
@@ -130,7 +102,6 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 
 # Graphics
 USE_OPENGL_RENDERER := true
-BOARD_EGL_CFG := $(LOCAL_PATH)/egl.cfg
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
@@ -149,10 +120,6 @@ BOARD_USES_HWC_SERVICES := true
 
 # Include path
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
-
-# Init
-# NOT USED
-##TARGET_NR_SVC_SUPP_GIDS := 20
 
 # Keymaster
 BOARD_USES_TRUST_KEYMASTER := true
@@ -181,9 +148,6 @@ BOARD_USE_VP8ENC_SUPPORT := true
 WITH_DEXPREOPT := true
 WITH_DEXPREOPT_BOOT_IMG_ONLY := true
 
-# Not yet compatible with art
-#DONT_DEXPREOPT_PREBUILTS := true
-
 # If using cm vold we support exfat and ntfs
 TARGET_KERNEL_HAVE_EXFAT := true
 TARGET_KERNEL_HAVE_NTFS := true
@@ -203,6 +167,7 @@ BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 9639936
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2506096640
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 12629049344
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 4096
 
 # PowerHAL
@@ -234,16 +199,10 @@ BOARD_SEPOLICY_DIRS += \
 BOARD_SECCOMP_POLICY += \
 	device/samsung/chagall-klimt-common/seccomp
 
-# SurfaceFlinger - NOT USED !!!
-##BOARD_USES_SYNC_MODE_FOR_MEDIA := true
-
 # Webkit
 ENABLE_WEBGL := true
 
 # WFD
-# NOT USED
-##BOARD_USES_WFD_SERVICE := true
-# OK MERGED
 BOARD_USES_WFD := true
 
 # Advanced Low Power audio support
@@ -261,5 +220,5 @@ EXTENDED_FONT_FOOTPRINT := true
 # Disable journaling on system.img to save space
 BOARD_SYSTEMIMAGE_JOURNAL_SIZE := 0
 
-# Linker
+# Our version of libGLES_mali.so blob missing popcountsi
 LINKER_FORCED_SHIM_LIBS := /system/vendor/lib/egl/libGLES_mali.so|libpopcountsi2.so
