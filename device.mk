@@ -237,29 +237,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
 
-# Media
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sapa.jack.master=alsa \
-    ro.hdcp2.rx=tz \
-    persist.bluetooth.disableabsvol=true
-
-# Open GL
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.opengles.version=196609
-
-# Audio
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.media_vol_steps=30
-
-# sdcardfs
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sys.sdcardfs=true
-	ro.securestorage.support=true
-
-# Wifi
-PRODUCT_PROPERTY_OVERRIDES += \
-	wifi.interface=wlan0
-
 # __popcountsi2 method, for the r7p0 egl blob
 PRODUCT_PACKAGES += \
     libpopcountsi2
