@@ -17,12 +17,10 @@
 # Ramdisk
 PRODUCT_PACKAGES += \
     init.samsung.rc \
-    init.universal5420.rc \
     init.universal5420.usb.rc \
     init.universal5420.wifi.rc \
-    fstab.universal5420 \
-    ueventd.universal5420.rc
-
+    fstab.universal5420
+	
 # Keylayouts
 PRODUCT_COPY_FILES += \
     device/samsung/chagall-klimt-common/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl \
