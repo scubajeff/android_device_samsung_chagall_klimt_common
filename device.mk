@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/chagall-klimt-common
-
 # Ramdisk
 PRODUCT_PACKAGES += \
     init.samsung.rc \
@@ -27,12 +25,12 @@ PRODUCT_PACKAGES += \
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl \
-    $(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
+    device/samsung/chagall-klimt-common/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl \
+    device/samsung/chagall-klimt-common/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
 
 # IDC
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/idc/Synaptics_HID_TouchPad.idc:system/usr/idc/Synaptics_HID_TouchPad.idc
+    device/samsung/chagall-klimt-common/idc/Synaptics_HID_TouchPad.idc:system/usr/idc/Synaptics_HID_TouchPad.idc
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -44,17 +42,17 @@ PRODUCT_PACKAGES += \
 
 # Audio
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio/audio_effects.conf:system/etc/audio_effects.conf
+    device/samsung/chagall-klimt-common/audio/audio_effects.conf:system/etc/audio_effects.conf
 
 # Media profile
 PRODUCT_COPY_FILES += \
 	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
 	frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
 	frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
-    $(LOCAL_PATH)/media/media_codecs.xml:system/etc/media_codecs.xml \
-    $(LOCAL_PATH)/media/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
-    $(LOCAL_PATH)/media/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
-    $(LOCAL_PATH)/media/media_profiles.xml:system/etc/media_profiles.xml
+    device/samsung/chagall-klimt-common/media/media_codecs.xml:system/etc/media_codecs.xml \
+    device/samsung/chagall-klimt-common/media/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
+    device/samsung/chagall-klimt-common/media/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
+    device/samsung/chagall-klimt-common/media/media_profiles.xml:system/etc/media_profiles.xml
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -88,14 +86,14 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 PRODUCT_CHARACTERISTICS := tablet
 
-DEVICE_PACKAGE_OVERLAYS := \
-    $(LOCAL_PATH)/overlay-common
+DEVICE_PACKAGE_OVERLAYS += \
+    device/samsung/chagall-klimt-common/overlay-common
 
 # Wifi
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    $(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
+    device/samsung/chagall-klimt-common/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+    device/samsung/chagall-klimt-common/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    device/samsung/chagall-klimt-common/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
 PRODUCT_PACKAGES += \
     libwpa_client \
