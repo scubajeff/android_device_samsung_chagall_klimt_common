@@ -32,11 +32,6 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
 
-# RIL
-BOARD_PROVIDES_LIBRIL := true
-# hardware/samsung/ril
-BOARD_MODEM_TYPE := xmm7260
-
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
@@ -73,8 +68,6 @@ BOARD_GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH
 # Kernel
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
-TARGET_KERNEL_CONFIG := cyanogenmod_chagalllte_defconfig
-TARGET_KERNEL_SOURCE := kernel/samsung/chagalllte
 
 # Charging mode
 #BOARD_CHARGER_ENABLE_SUSPEND := true
