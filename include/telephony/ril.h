@@ -72,7 +72,7 @@ extern "C" {
  *                    RIL_REQUEST_SET_CARRIER_RESTRICTIONS and
  *                    RIL_UNSOL_PCO_DATA
  */
-#define RIL_VERSION 12
+#define RIL_VERSION 12 /* used to be 11 thought */
 #define LAST_IMPRECISE_RIL_VERSION 12 // Better self-documented name
 #define RIL_VERSION_MIN 6 /* Minimum RIL_VERSION supported */
 
@@ -127,7 +127,7 @@ typedef enum {
     RIL_E_ILLEGAL_SIM_OR_ME = 15,               /* network selection failed due to
                                                    illegal SIM or ME */
     RIL_E_MISSING_RESOURCE = 16,                /* no logical channel available */
-    RIL_E_NO_SUCH_ELEMENT = 17,                 /* application not found on SIM */
+    RIL_E_NO_SUCH_ELEMENT = 17,                  /* application not found on SIM */
     RIL_E_DIAL_MODIFIED_TO_USSD = 18,           /* DIAL request modified to USSD */
     RIL_E_DIAL_MODIFIED_TO_SS = 19,             /* DIAL request modified to SS */
     RIL_E_DIAL_MODIFIED_TO_DIAL = 20,           /* DIAL request modified to DIAL with different
@@ -937,10 +937,9 @@ typedef struct {
 #define RIL_CARD_MAX_APPS     8
 
 typedef enum {
-    RIL_CARDSTATE_ABSENT     = 0,
-    RIL_CARDSTATE_PRESENT    = 1,
-    RIL_CARDSTATE_ERROR      = 2,
-    RIL_CARDSTATE_RESTRICTED = 3  /* card is present but not usable due to carrier restrictions.*/
+    RIL_CARDSTATE_ABSENT   = 0,
+    RIL_CARDSTATE_PRESENT  = 1,
+    RIL_CARDSTATE_ERROR    = 2
 } RIL_CardState;
 
 typedef enum {
@@ -1013,11 +1012,11 @@ typedef struct
   int              pin1_replaced;   /* applicable to USIM, CSIM & ISIM */
   RIL_PinState     pin1;
   RIL_PinState     pin2;
-  int              foo1;            // pin1_num_retries
-  int              foo2;            // puk1_num_retries
-  int              foo3;            // pin2_num_retries
-  int              foo4;            // puk2_num_retries
-  int              foo5;            // perso_unblock_retries
+  int              foo1;            /* Samsung */
+  int              foo2;            /* Samsung */
+  int              foo3;            /* Samsung */
+  int              foo4;            /* Samsung */
+  int              foo5;            /* Samsung */
 } RIL_AppStatus;
 
 /* Deprecated, use RIL_CardStatus_v6 */
@@ -1264,6 +1263,7 @@ typedef struct {
     RIL_TD_SCDMA_SignalStrength TD_SCDMA_SignalStrength;
 } RIL_SignalStrength_v10;
 
+/** RIL_CellIdentityGsm */
 typedef struct {
     int mcc;    /* 3-digit Mobile Country Code, 0..999, INT_MAX if unknown */
     int mnc;    /* 2 or 3-digit Mobile Network Code, 0..999, INT_MAX if unknown */
@@ -1280,6 +1280,7 @@ typedef struct {
     uint8_t bsic;/* 6-bit Base Station Identity Code, 0xFF if unknown */
 } RIL_CellIdentityGsm_v12;
 
+/** RIL_CellIdentityWcdma */
 typedef struct {
     int mcc;    /* 3-digit Mobile Country Code, 0..999, INT_MAX if unknown  */
     int mnc;    /* 2 or 3-digit Mobile Network Code, 0..999, INT_MAX if unknown  */
@@ -1297,6 +1298,7 @@ typedef struct {
     int uarfcn; /* 16-bit UMTS Absolute RF Channel Number, INT_MAX if unknown */
 } RIL_CellIdentityWcdma_v12;
 
+/** RIL_CellIdentityCdma */
 typedef struct {
     int networkId;      /* Network Id 0..65535, INT_MAX if unknown */
     int systemId;       /* CDMA System Id 0..32767, INT_MAX if unknown  */
@@ -1312,6 +1314,7 @@ typedef struct {
                          * to +90 degrees). INT_MAX if unknown */
 } RIL_CellIdentityCdma;
 
+/** RIL_CellIdentityLte */
 typedef struct {
     int mcc;    /* 3-digit Mobile Country Code, 0..999, INT_MAX if unknown  */
     int mnc;    /* 2 or 3-digit Mobile Network Code, 0..999, INT_MAX if unknown  */
@@ -1329,6 +1332,7 @@ typedef struct {
     int earfcn; /* 18-bit LTE Absolute RC Channel Number, INT_MAX if unknown */
 } RIL_CellIdentityLte_v12;
 
+/** RIL_CellIdentityTdscdma */
 typedef struct {
     int mcc;    /* 3-digit Mobile Country Code, 0..999, INT_MAX if unknown  */
     int mnc;    /* 2 or 3-digit Mobile Network Code, 0..999, INT_MAX if unknown  */
@@ -1337,6 +1341,7 @@ typedef struct {
     int cpid;    /* 8-bit Cell Parameters ID described in TS 25.331, 0..127, INT_MAX if unknown */
 } RIL_CellIdentityTdscdma;
 
+/** RIL_CellInfoGsm */
 typedef struct {
   RIL_CellIdentityGsm   cellIdentityGsm;
   RIL_GW_SignalStrength signalStrengthGsm;
@@ -1347,6 +1352,7 @@ typedef struct {
   RIL_GSM_SignalStrength_v12 signalStrengthGsm;
 } RIL_CellInfoGsm_v12;
 
+/** RIL_CellInfoWcdma */
 typedef struct {
   RIL_CellIdentityWcdma cellIdentityWcdma;
   RIL_SignalStrengthWcdma signalStrengthWcdma;
@@ -1357,12 +1363,14 @@ typedef struct {
   RIL_SignalStrengthWcdma signalStrengthWcdma;
 } RIL_CellInfoWcdma_v12;
 
+/** RIL_CellInfoCdma */
 typedef struct {
   RIL_CellIdentityCdma      cellIdentityCdma;
   RIL_CDMA_SignalStrength   signalStrengthCdma;
   RIL_EVDO_SignalStrength   signalStrengthEvdo;
 } RIL_CellInfoCdma;
 
+/** RIL_CellInfoLte */
 typedef struct {
   RIL_CellIdentityLte        cellIdentityLte;
   RIL_LTE_SignalStrength_v8  signalStrengthLte;
@@ -1373,6 +1381,7 @@ typedef struct {
   RIL_LTE_SignalStrength_v8  signalStrengthLte;
 } RIL_CellInfoLte_v12;
 
+/** RIL_CellInfoTdscdma */
 typedef struct {
   RIL_CellIdentityTdscdma cellIdentityTdscdma;
   RIL_TD_SCDMA_SignalStrength signalStrengthTdscdma;
@@ -1720,18 +1729,29 @@ typedef struct {
 /* Tx Power Levels */
 #define RIL_NUM_TX_POWER_LEVELS     5
 
+/**
+ * Aggregate modem activity information
+ */
 typedef struct {
 
-  /* period (in ms) when modem is power collapsed */
+  /* total time (in ms) when modem is in a low power or
+   * sleep state
+   */
   uint32_t sleep_mode_time_ms;
 
-  /* period (in ms) when modem is awake and in idle mode*/
+  /* total time (in ms) when modem is awake but neither
+   * the transmitter nor receiver are active/awake */
   uint32_t idle_mode_time_ms;
 
-  /* period (in ms) for which Tx is active */
+  /* total time (in ms) during which the transmitter is active/awake,
+   * subdivided by manufacturer-defined device-specific
+   * contiguous increasing ranges of transmit power between
+   * 0 and the transmitter's maximum transmit power.
+   */
   uint32_t tx_mode_time_ms[RIL_NUM_TX_POWER_LEVELS];
 
-  /* period (in ms) for which Rx is active */
+  /* total time (in ms) for which receiver is active/awake and
+   * the transmitter is inactive */
   uint32_t rx_mode_time_ms;
 } RIL_ActivityStatsInfo;
 
@@ -3606,7 +3626,25 @@ typedef struct {
  * Assign a specified band for RF configuration.
  *
  * "data" is int *
- * ((int *)data)[0] is a RIL_RadioBandMode
+ * ((int *)data)[0] is == 0 for "unspecified" (selected by baseband automatically)
+ * ((int *)data)[0] is == 1 for "EURO band" (GSM-900 / DCS-1800 / WCDMA-IMT-2000)
+ * ((int *)data)[0] is == 2 for "US band" (GSM-850 / PCS-1900 / WCDMA-850 / WCDMA-PCS-1900)
+ * ((int *)data)[0] is == 3 for "JPN band" (WCDMA-800 / WCDMA-IMT-2000)
+ * ((int *)data)[0] is == 4 for "AUS band" (GSM-900 / DCS-1800 / WCDMA-850 / WCDMA-IMT-2000)
+ * ((int *)data)[0] is == 5 for "AUS band 2" (GSM-900 / DCS-1800 / WCDMA-850)
+ * ((int *)data)[0] is == 6 for "Cellular (800-MHz Band)"
+ * ((int *)data)[0] is == 7 for "PCS (1900-MHz Band)"
+ * ((int *)data)[0] is == 8 for "Band Class 3 (JTACS Band)"
+ * ((int *)data)[0] is == 9 for "Band Class 4 (Korean PCS Band)"
+ * ((int *)data)[0] is == 10 for "Band Class 5 (450-MHz Band)"
+ * ((int *)data)[0] is == 11 for "Band Class 6 (2-GMHz IMT2000 Band)"
+ * ((int *)data)[0] is == 12 for "Band Class 7 (Upper 700-MHz Band)"
+ * ((int *)data)[0] is == 13 for "Band Class 8 (1800-MHz Band)"
+ * ((int *)data)[0] is == 14 for "Band Class 9 (900-MHz Band)"
+ * ((int *)data)[0] is == 15 for "Band Class 10 (Secondary 800-MHz Band)"
+ * ((int *)data)[0] is == 16 for "Band Class 11 (400-MHz European PAMR Band)"
+ * ((int *)data)[0] is == 17 for "Band Class 15 (AWS Band)"
+ * ((int *)data)[0] is == 18 for "Band Class 16 (US 2.5-GHz Band)"
  *
  * "response" is NULL
  *
@@ -3628,8 +3666,28 @@ typedef struct {
  * "data" is NULL
  *
  * "response" is int *
- * "response" points to an array of int's, the int[0] is the size of array;
- * subsequent values are a list of RIL_RadioBandMode listing supported modes.
+ * "response" points to an array of int's, the int[0] is the size of array, reset is one for
+ * each available band mode.
+ *
+ *  0 for "unspecified" (selected by baseband automatically)
+ *  1 for "EURO band" (GSM-900 / DCS-1800 / WCDMA-IMT-2000)
+ *  2 for "US band" (GSM-850 / PCS-1900 / WCDMA-850 / WCDMA-PCS-1900)
+ *  3 for "JPN band" (WCDMA-800 / WCDMA-IMT-2000)
+ *  4 for "AUS band" (GSM-900 / DCS-1800 / WCDMA-850 / WCDMA-IMT-2000)
+ *  5 for "AUS band 2" (GSM-900 / DCS-1800 / WCDMA-850)
+ *  6 for "Cellular (800-MHz Band)"
+ *  7 for "PCS (1900-MHz Band)"
+ *  8 for "Band Class 3 (JTACS Band)"
+ *  9 for "Band Class 4 (Korean PCS Band)"
+ *  10 for "Band Class 5 (450-MHz Band)"
+ *  11 for "Band Class 6 (2-GMHz IMT2000 Band)"
+ *  12 for "Band Class 7 (Upper 700-MHz Band)"
+ *  13 for "Band Class 8 (1800-MHz Band)"
+ *  14 for "Band Class 9 (900-MHz Band)"
+ *  15 for "Band Class 10 (Secondary 800-MHz Band)"
+ *  16 for "Band Class 11 (400-MHz European PAMR Band)"
+ *  17 for "Band Class 15 (AWS Band)"
+ *  18 for "Band Class 16 (US 2.5-GHz Band)"
  *
  * Valid errors:
  *  SUCCESS
@@ -4754,6 +4812,7 @@ typedef struct {
  */
 #define RIL_REQUEST_SIM_TRANSMIT_APDU_BASIC 114
 
+#if 0
 /**
  * RIL_REQUEST_SIM_OPEN_CHANNEL
  *
@@ -4793,6 +4852,7 @@ typedef struct {
  *  GENERIC_FAILURE
  */
 #define RIL_REQUEST_SIM_CLOSE_CHANNEL 116
+#endif
 
 /**
  * RIL_REQUEST_SIM_TRANSMIT_APDU_CHANNEL
@@ -5111,7 +5171,7 @@ typedef struct {
 /**
  * RIL_REQUEST_GET_ACTIVITY_INFO
  *
- * Get modem activity statisitics info.
+ * Get modem activity information for power consumption estimation.
  *
  * There can be multiple RIL_REQUEST_GET_ACTIVITY_INFO calls to modem.
  * Once the response for the request is sent modem will clear
@@ -5127,58 +5187,6 @@ typedef struct {
  * GENERIC_FAILURE
  */
 #define RIL_REQUEST_GET_ACTIVITY_INFO 135
-
-/**
- * RIL_REQUEST_SET_CARRIER_RESTRICTIONS
- *
- * Set carrier restrictions for this sim slot. Expected modem behavior:
- *  If never receives this command
- *  - Must allow all carriers
- *  Receives this command with data being NULL
- *  - Must allow all carriers. If a previously allowed SIM is present, modem must not reload
- *    the SIM. If a previously disallowed SIM is present, reload the SIM and notify Android.
- *  Receives this command with a list of carriers
- *  - Only allow specified carriers, persist across power cycles and FDR. If a present SIM
- *    is in the allowed list, modem must not reload the SIM. If a present SIM is *not* in
- *    the allowed list, modem must detach from the registered network and only keep emergency
- *    service, and notify Android SIM refresh reset with new SIM state being
- *    RIL_CARDSTATE_RESTRICTED. Emergency service must be enabled.
- *
- * "data" is const RIL_CarrierRestrictions *
- * A list of allowed carriers and possibly a list of excluded carriers.
- * If data is NULL, means to clear previous carrier restrictions and allow all carriers
- *
- * "response" is int *
- * ((int *)data)[0] contains the number of allowed carriers which have been set correctly.
- * On success, it should match the length of list data->allowed_carriers.
- * If data is NULL, the value must be 0.
- *
- * Valid errors:
- *  RIL_E_SUCCESS
- *  RIL_E_INVALID_ARGUMENTS
- *  RIL_E_RADIO_NOT_AVAILABLE
- *  RIL_E_REQUEST_NOT_SUPPORTED
- */
-#define RIL_REQUEST_SET_CARRIER_RESTRICTIONS 136
-
-/**
- * RIL_REQUEST_GET_CARRIER_RESTRICTIONS
- *
- * Get carrier restrictions for this sim slot. Expected modem behavior:
- *  Return list of allowed carriers, or null if all carriers are allowed.
- *
- * "data" is NULL
- *
- * "response" is const RIL_CarrierRestrictions *.
- * If response is NULL, it means all carriers are allowed.
- *
- * Valid errors:
- *  RIL_E_SUCCESS
- *  RIL_E_RADIO_NOT_AVAILABLE
- *  RIL_E_REQUEST_NOT_SUPPORTED
- */
-#define RIL_REQUEST_GET_CARRIER_RESTRICTIONS 137
-
 /**********************************************************
  * SAMSUNG REQUESTS
  **********************************************************/
@@ -5242,6 +5250,57 @@ typedef struct {
 #define RIL_REQUEST_SET_PREFERRED_NETWORK_LIST 10055
 #define RIL_REQUEST_GET_PREFERRED_NETWORK_LIST 10056
 #define RIL_REQUEST_HANGUP_VT 10057
+
+/**
+ * RIL_REQUEST_SET_CARRIER_RESTRICTIONS
+ *
+ * Set carrier restrictions for this sim slot. Expected modem behavior:
+ *  If never receives this command
+ *  - Must allow all carriers
+ *  Receives this command with data being NULL
+ *  - Must allow all carriers. If a previously allowed SIM is present, modem must not reload
+ *    the SIM. If a previously disallowed SIM is present, reload the SIM and notify Android.
+ *  Receives this command with a list of carriers
+ *  - Only allow specified carriers, persist across power cycles and FDR. If a present SIM
+ *    is in the allowed list, modem must not reload the SIM. If a present SIM is *not* in
+ *    the allowed list, modem must detach from the registered network and only keep emergency
+ *    service, and notify Android SIM refresh reset with new SIM state being
+ *    RIL_CARDSTATE_RESTRICTED. Emergency service must be enabled.
+ *
+ * "data" is const RIL_CarrierRestrictions *
+ * A list of allowed carriers and possibly a list of excluded carriers.
+ * If data is NULL, means to clear previous carrier restrictions and allow all carriers
+ *
+ * "response" is int *
+ * ((int *)data)[0] contains the number of allowed carriers which have been set correctly.
+ * On success, it should match the length of list data->allowed_carriers.
+ * If data is NULL, the value must be 0.
+ *
+ * Valid errors:
+ *  RIL_E_SUCCESS
+ *  RIL_E_INVALID_ARGUMENTS
+ *  RIL_E_RADIO_NOT_AVAILABLE
+ *  RIL_E_REQUEST_NOT_SUPPORTED
+ */
+#define RIL_REQUEST_SET_CARRIER_RESTRICTIONS 136
+
+/**
+ * RIL_REQUEST_GET_CARRIER_RESTRICTIONS
+ *
+ * Get carrier restrictions for this sim slot. Expected modem behavior:
+ *  Return list of allowed carriers, or null if all carriers are allowed.
+ *
+ * "data" is NULL
+ *
+ * "response" is const RIL_CarrierRestrictions *.
+ * If response is NULL, it means all carriers are allowed.
+ *
+ * Valid errors:
+ *  RIL_E_SUCCESS
+ *  RIL_E_RADIO_NOT_AVAILABLE
+ *  RIL_E_REQUEST_NOT_SUPPORTED
+ */
+#define RIL_REQUEST_GET_CARRIER_RESTRICTIONS 137
 
 /***********************************************************************/
 
@@ -5789,6 +5848,7 @@ typedef struct {
  * ((int *)data)[0] is of type const RIL_SrvccState
  *
  */
+
 #define RIL_UNSOL_SRVCC_STATE_NOTIFY 1039
 
 /**
@@ -5870,8 +5930,6 @@ typedef struct {
   */
 #define RIL_UNSOL_PCO_DATA 1046
 
-/***********************************************************************/
-
 /**********************************************************
  * SAMSUNG RESPONSE
  **********************************************************/
@@ -5897,7 +5955,6 @@ typedef struct {
 #define RIL_UNSOL_TWO_MIC_STATE 11018
 #define RIL_UNSOL_DHA_STATE 11019
 #define RIL_UNSOL_UART 11020
-#define RIL_UNSOL_SIM_PB_READY 11021
 #define RIL_UNSOL_RESPONSE_HANDOVER 11038
 #define RIL_UNSOL_IPV6_ADDR 11039
 #define RIL_UNSOL_NWK_INIT_DISC_REQUEST 11040
@@ -5915,6 +5972,7 @@ typedef struct {
 #define RIL_UNSOL_SNDMGR_WB_AMR_REPORT 20017
 
 /***********************************************************************/
+
 
 #if defined(ANDROID_MULTI_SIM)
 /**
@@ -6201,6 +6259,7 @@ void RIL_onUnsolicitedResponse(int unsolResponse, const void *data,
 void RIL_requestTimedCallback (RIL_TimedCallback callback,
                                void *param, const struct timeval *relativeTime);
 
+
 #endif /* RIL_SHLIB */
 
 #ifdef __cplusplus
@@ -6208,3 +6267,4 @@ void RIL_requestTimedCallback (RIL_TimedCallback callback,
 #endif
 
 #endif /*ANDROID_RIL_H*/
+
