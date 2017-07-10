@@ -20,7 +20,7 @@ PRODUCT_PACKAGES += \
     init.universal5420.usb.rc \
     init.universal5420.wifi.rc \
     fstab.universal5420
-	
+
 # Keylayouts
 PRODUCT_COPY_FILES += \
     device/samsung/chagall-klimt-common/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl \
@@ -39,7 +39,7 @@ PRODUCT_PACKAGES += \
     tinymix
 
 # Audio
-PRODUCT_COPY_FILES += \
+#PRODUCT_COPY_FILES += \
     device/samsung/chagall-klimt-common/audio/audio_effects.conf:system/etc/audio_effects.conf
 
 # Media profile
