@@ -14,6 +14,9 @@
 # limitations under the License.
 #
 
+# System properties
+-include device/samsung/chagall-klimt-common/system_prop.mk
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     init.samsung.rc \
