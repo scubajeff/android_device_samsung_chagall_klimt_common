@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/chagall-klimt-common
-
 # Platform
 BOARD_VENDOR := samsung
 TARGET_BOARD_PLATFORM := exynos5
@@ -36,7 +34,7 @@ TARGET_CPU_SMP := true
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_HAVE_SAMSUNG_BLUETOOTH := true
-BOARD_CUSTOM_BT_CONFIG:= $(LOCAL_PATH)/bluetooth/libbt_vndcfg.txt
+BOARD_CUSTOM_BT_CONFIG:= device/samsung/chagall-klimt-common/bluetooth/libbt_vndcfg.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(TARGET_PATH)/bluetooth
 
 # Wifi
@@ -115,7 +113,7 @@ BOARD_USES_VIRTUAL_DISPLAY := true
 BOARD_USES_HWC_SERVICES := true
 
 # Include path
-TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
+TARGET_SPECIFIC_HEADER_PATH := device/samsung/chagall-klimt-common/include
 
 # Keymaster
 BOARD_USES_TRUST_KEYMASTER := true
@@ -168,7 +166,7 @@ TARGET_POWERHAL_VARIANT := chagalllte
 BOARD_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 BOARD_HAS_NO_SELECT_BUTTON := true
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.universal5420
+TARGET_RECOVERY_FSTAB := device/samsung/chagall-klimt-common/rootdir/etc/fstab.universal5420
 TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_RECOVERY_SWIPE := true
