@@ -114,12 +114,10 @@ static int consumerir_transmit(UNUSED struct consumerir_device *dev,
     free(buffer);
 
     pthread_mutex_unlock(&g_mtx);
-    ALOGE("===================================consumerir_transmit successful");
     return 0;
 
 error:
     free(buffer);
-    ALOGE("====================================consumerir_transmit failed");
     return -ENOMEM;
 }
 
@@ -176,8 +174,6 @@ static int consumerir_open(const hw_module_t* module, const char* name,
 
     *device = (hw_device_t*) dev;
     fd = open("/sys/class/sec/sec_ir/ir_send", O_RDWR);
-    if (fd==-1) ALOGE("============/sys/class/sec/sec_ir/ir_send open failed.");
-    else ALOGE("=================================consumerir_open successful");
     return 0;
 }
 
